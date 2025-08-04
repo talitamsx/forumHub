@@ -1,7 +1,6 @@
 package challenge.forum_hub.domain.topico;
 
 import challenge.forum_hub.domain.curso.Curso;
-import challenge.forum_hub.domain.usuario.Perfil;
 import challenge.forum_hub.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,7 +24,6 @@ public class Topico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mensagem;
-    private String nomeCurso;
     private String titulo;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
@@ -35,5 +33,11 @@ public class Topico {
     @ManyToOne (fetch = FetchType.EAGER)
     Curso curso;
 
+    public Topico (DadosCadastroTopico dados, Curso curso, Usuario autor){
+        this.titulo = dados.titulo();
+        this.mensagem = dados.mensagem();
+        this.curso = curso;
+        this.autor = autor;
 
+    }
 }
