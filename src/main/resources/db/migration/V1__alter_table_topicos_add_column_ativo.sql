@@ -1,0 +1,1 @@
+ALTER TABLE topicos ADD ativo BOOLEAN NOT NULL DEFAULT true;

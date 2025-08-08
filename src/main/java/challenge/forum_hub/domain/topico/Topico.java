@@ -25,6 +25,7 @@ public class Topico {
     private Long id;
     private String mensagem;
     private String titulo;
+
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     @ManyToOne (fetch = FetchType.EAGER)
@@ -33,11 +34,23 @@ public class Topico {
     @ManyToOne (fetch = FetchType.EAGER)
     Curso curso;
 
+    private Boolean ativo;
+
     public Topico (DadosCadastroTopico dados, Curso curso, Usuario autor){
         this.titulo = dados.titulo();
         this.mensagem = dados.mensagem();
         this.curso = curso;
         this.autor = autor;
+        this.dataCriacao = LocalDateTime.now();
+    }
 
+    public void atualizarInformacoes(DadosCadastroTopico dados){
+        this.titulo = dados.titulo();
+        this.mensagem = dados.mensagem();
+        this.curso = curso;
+    }
+
+    public void inativarTopico() {
+        this.ativo = false;
     }
 }

@@ -1,7 +1,15 @@
 package challenge.forum_hub.domain.topico;
 
+import jakarta.validation.constraints.NotBlank;
+
 public record DadosCadastroTopico (
+
+        @NotBlank
         String titulo,
-String mensagem,
-String nomeCurso
+
+        @NotBlank
+        String mensagem,
+
+        @NotBlank
+        String nomeCurso
 ) {}

@@ -32,12 +32,8 @@ public class SecurityConfiguration {
                         //prioriza o filtro que criei, senão fizer isso o Spring executa primeiro o dele e nem verifica a autenticação
                         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                         .build();
-
     }
 
-    //O @Bean serve para exportar uma classe para o Spring, fazendo com ele consiga carrega-la
-    //realize sua injeção de dependência em outras classes
-    //Em outras palavras ensina o Spring como criar um objeto
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
