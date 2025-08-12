@@ -1,4 +1,4 @@
-# FórumHub - API RESt com Spring Boot
+# FórumHub - API REST com Spring Boot
 Projeto desenvolvido durante o curso de Desenvolvimento Back-end em Java, uma iniciativa da ONE do Tech Foundation — uma parceria entre Oracle Next Education e Alura.
 
 ## Objetivo do projeto
@@ -66,7 +66,7 @@ Sem o token não é possível cadastrar, listar, editar ou excluir tópicos
 <img width="1207" height="351" alt="image" src="https://github.com/user-attachments/assets/3750dab9-c72b-46f0-a151-7ada43d085d3" />
 
 **Tópico removido**
-- O tópico bão é removido do banco, apenas marcado como **inativo**.
+- O tópico não é removido do banco, apenas marcado como **inativo**.
 <img width="935" height="294" alt="image" src="https://github.com/user-attachments/assets/cc103e99-294d-49c0-b37d-c28548be4b80" />
 
 ### 📄 Lsitar tópicos Ativos
