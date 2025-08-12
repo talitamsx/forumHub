@@ -12,7 +12,7 @@ O projeto foi construído como um desafio prático para aplicar conceitos de bac
 - Atualizar um tópico
 - Excluir (inativar) um tópico
 - Autenticação e autorização via JWT
-- Restricções;
+- Restrições;
   - Apenas o Autor do tópico pode editar/deletar
   - Endpoints protegidos por autenticação
 
