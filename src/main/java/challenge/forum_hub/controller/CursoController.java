@@ -5,7 +5,6 @@ import challenge.forum_hub.domain.curso.Curso;
 import challenge.forum_hub.domain.curso.CursoRepository;
 import challenge.forum_hub.domain.curso.DadosCadastrarCurso;
 import challenge.forum_hub.domain.curso.DadosListagemCurso;
-import challenge.forum_hub.domain.topico.DadosListagemTopico;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,5 +39,3 @@ public class CursoController {
         return ResponseEntity.ok(page);
     }
 }
-
-

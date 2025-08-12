@@ -1,6 +1,5 @@
 package challenge.forum_hub.domain.topico;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public record DadosDetalhamentoTopico(
@@ -9,7 +8,8 @@ public record DadosDetalhamentoTopico(
         String mensagem,
         String nomeCurso,
         String autor,
-        String dataCriacao
+        String dataCriacao,
+        String status
 ) {
     public DadosDetalhamentoTopico(Topico topico){
         this(
@@ -18,7 +18,7 @@ public record DadosDetalhamentoTopico(
                 topico.getMensagem(),
                 topico.getCurso().getNome(),
                 topico.getAutor().getNome(),
-                topico.getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
-        );
+                topico.getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")),
+                (topico.getAtivo() != null && topico.getAtivo() ? "Ativo" : "Inativo"));
     }
 }

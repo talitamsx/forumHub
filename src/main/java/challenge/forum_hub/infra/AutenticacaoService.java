@@ -1,11 +1,18 @@
-package challenge.forum_hub.domain.usuario;
+package challenge.forum_hub.infra;
 
 
+import challenge.forum_hub.domain.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+/**
+ * Serivço responsável pela autenticação de usuários
+ * Utiliza o Spring security para validar o login e gerar o token
+
+ */
 
 @Service
 public class AutenticacaoService implements UserDetailsService {

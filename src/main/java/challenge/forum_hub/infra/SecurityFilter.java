@@ -15,30 +15,29 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+/**
+ * Filtro qu intercepta as requisições validar o token
+ */
+
 @Component
 @Lazy
 public class SecurityFilter extends OncePerRequestFilter {
-
-
         @Autowired
         private TokenService tokenService;
-
-//        @Autowired
-//        private UsuarioRepository usuarioRepository;
 
     @Autowired
     private ApplicationContext applicationContext;
 
         @Override
         //FilterChain representa a cadeia de filtros na aplicação
+        //Intercepta a requisição extrai e valida o token
         protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-            //  System.out.println("CHAMANDO FILTER ");
             //recuperar token
             var tokenJWT = recuperarToken(request);
 
             if (tokenJWT != null) {
-                var subject = tokenService.getSubject(tokenJWT);
+                var subject = tokenService.validarToken(tokenJWT);
 
                 var usuarioRepository = applicationContext.getBean(UsuarioRepository.class);
                 var usuario = usuarioRepository.findByEmail(subject)
@@ -46,12 +45,11 @@ public class SecurityFilter extends OncePerRequestFilter {
 
                 var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                //  System.out.println("logado na requisição!!!!");
             }
-
             filterChain.doFilter(request, response); //necessário para chamar os proximos filtros da aplicação
         }
 
+        //Extrai o token do cabeçalho Authorization
         private String recuperarToken(HttpServletRequest request) {
 
             var authorizationHeader = request.getHeader("Authorization");

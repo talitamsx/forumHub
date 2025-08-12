@@ -1,6 +1,6 @@
 package challenge.forum_hub.controller;
 
-import challenge.forum_hub.domain.usuario.DadosAutenticacao;
+import challenge.forum_hub.infra.DadosAutenticacao;
 import challenge.forum_hub.domain.usuario.Usuario;
 import challenge.forum_hub.infra.DadosTokenJWT;
 import challenge.forum_hub.infra.TokenService;
@@ -16,20 +16,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//Controller responsável pela autenticação dos usuários
+
+//Realiza login e retorna um token JWT
 @RestController
 @RequestMapping("/login")
 public class AutenticacaoController {
 
     @Autowired
+    //Gerencia o processo de autenticação
     private AuthenticationManager manager;
 
     @Autowired
-    private TokenService tokenService; //prestar atenção no nome, Spring tbm tem uma classe com esse nome
-
+    //Serviço para gerar e validar o token
+    private TokenService tokenService;
 
     @Autowired
+    //Configuração de autenticação do Spring
     private AuthenticationConfiguration authenticationConfiguration;
 
+    /**
+     * Endpoint para efetuar login no sistema.
+     * Recebe as credenciais do usuário, autentica no sistema e retorna um token JWT.
+     * @param dados Objeto contendo email e senha do usuário.
+     * @return ResponseEntity contendo o token JWT.
+      */
     @PostMapping
     @Transactional
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) throws Exception {
@@ -41,6 +52,3 @@ public class AutenticacaoController {
         return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
 }
-
-
-

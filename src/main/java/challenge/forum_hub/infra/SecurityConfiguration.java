@@ -13,6 +13,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Classe de configuração do Spring Security.
+ * Define autenticação, autorização e filtros de segurança.
+ */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -26,19 +31,21 @@ public class SecurityConfiguration {
                 http.csrf(csrf -> csrf.disable())
                         .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(req -> {
-                            req.requestMatchers("/login").permitAll();
-                            req.anyRequest().authenticated();
+                            req.requestMatchers("/login").permitAll(); //endpoint público
+                            req.anyRequest().authenticated(); //demais endpoints requrem login
                         })
                         //prioriza o filtro que criei, senão fizer isso o Spring executa primeiro o dele e nem verifica a autenticação
                         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                         .build();
     }
 
+    //Fornece um AuthenticationManager a partir da configuração do Spring
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
+    //Define o algoritmo de criptografia da senha
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

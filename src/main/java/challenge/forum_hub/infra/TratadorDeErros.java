@@ -35,11 +35,6 @@ public class TratadorDeErros {
         return ResponseEntity.badRequest().body(erros);
     }
 
-//    //Trata exeção personalizada de regra de negócio
-//    @ExceptionHandler(ValidacaoException.class)
-//    public ResponseEntity tratarErroRegraNegocio(ValidacaoException ex) {
-//        return ResponseEntity.badRequest().body(ex.getMessage());
-//    }
 
     //class (record) para representar mensagem de erro de validação e mostrar formatada
     private record DadosErroValidacao(String campo, String mensagem) {

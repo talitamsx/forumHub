@@ -12,6 +12,8 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+
+//Serviço responsável por gerar e validar o token
 @Service
 public class TokenService {
 
@@ -32,7 +34,7 @@ public class TokenService {
             }
         }
 
-        public String getSubject(String tokenJWT){
+        public String validarToken(String tokenJWT){
             try{
                 var algoritmo = Algorithm.HMAC256(secret);
                 return JWT.require(algoritmo)
@@ -48,6 +50,6 @@ public class TokenService {
 
         //é recomendado configurar um prazo para expiração do token
         private Instant dataExpiracao() {
-            return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+            return LocalDateTime.now().plusHours(1).toInstant(ZoneOffset.of("-03:00"));
         }
     }
