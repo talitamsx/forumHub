@@ -1,4 +1,4 @@
-package challenge.forum_hub.infra;
+package challenge.forum_hub.infra.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,6 +32,7 @@ public class SecurityConfiguration {
                         .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(req -> {
                             req.requestMatchers("/login").permitAll(); //endpoint público
+                            req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                             req.anyRequest().authenticated(); //demais endpoints requrem login
                         })
                         //prioriza o filtro que criei, senão fizer isso o Spring executa primeiro o dele e nem verifica a autenticação

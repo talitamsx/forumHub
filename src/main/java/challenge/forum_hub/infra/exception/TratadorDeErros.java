@@ -1,15 +1,15 @@
-package challenge.forum_hub.infra;
+package challenge.forum_hub.infra.exception;
 
 import challenge.forum_hub.domain.ValidacaoException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -69,4 +69,16 @@ public class TratadorDeErros {
         return ResponseEntity.badRequest().body(msg);
 
     }
+//
+//    @ExceptionHandler(UsernameNotFoundException.class)
+//    public ResponseEntity<String> tratarUsuarioNaoEncontrado() {
+//        return ResponseEntity.status(404).body("USUÁRIO NÃO ENCONTRADO");
+//    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<String> tratarCredenciaisinvalidas() {
+        return ResponseEntity.status(401).body("E-mail ou senha inválidos");
+    }
+
+
 }

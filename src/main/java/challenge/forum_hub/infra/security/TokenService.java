@@ -1,4 +1,4 @@
-package challenge.forum_hub.infra;
+package challenge.forum_hub.infra.security;
 
 import challenge.forum_hub.domain.usuario.Usuario;
 import com.auth0.jwt.exceptions.JWTCreationException;
